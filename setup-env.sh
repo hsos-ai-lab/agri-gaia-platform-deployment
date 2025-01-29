@@ -119,6 +119,18 @@ echo ""
 echo "Enter flags to use with 'docker compose down' (e.g. -v to delete volumes):"
 read -rp "Flags for 'docker compose down': " -e compose_down_flags
 
+echo ""
+echo "Please enter the URL endpoint of your edge-benchmarking API"
+read -rp "Platform git branch: " -e edge_benchmarking_url
+
+echo ""
+echo "Please enter the user corresponding to your edge-benchmarking API endpoint"
+read -rp "Platform git branch: " -e edge_benchmarking_user
+
+echo ""
+echo "Please enter the password corresponding to your edge-benchmarking API endpoint"
+read -rp "Platform git branch: " -e edge_benchmarking_password
+
 generatePassword() {
 	< /dev/urandom tr -dc A-Za-z0-9 | head -c20
 }
@@ -186,6 +198,10 @@ AG_PORTAINER_ADMIN_PASSWORD=$(generatePassword)
 
 AG_GITHUB_TOKEN=${github_token}
 AG_NVIDIA_NGC_API_KEY=${nvidia_ngc_api_key}
+
+AG_EDGE_BENCHMARKING_URL=$(edge_benchmarking_url)
+AG_EDGE_BENCHMARKING_USER=$(edge_benchmarking_user)
+AG_EDGE_BENCHMARKING_PASSWORD=$(edge_benchmarking_password)
 EOF
 
 cat "${env_filepath}"

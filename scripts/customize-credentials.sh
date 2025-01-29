@@ -92,6 +92,10 @@ sed -i "s/GITHUB_TOKEN=.*/GITHUB_TOKEN=${AG_GITHUB_TOKEN}/g" .env
 sed -i "s/CONNECTOR_PASSWORD=.*/CONNECTOR_PASSWORD=${connector_password}/g" .env
 sed -i "s/PONTUSX_PASSWORD=.*/PONTUSX_PASSWORD=${pontusx_password}/g" .env
 
+sed -i "s/EDGE_BENCHMARKING_URL=.*/EDGE_BENCHMARKING_URL=${edge_benchmarking_url}/g" .env
+sed -i "s/EDGE_BENCHMARKING_USER=.*/EDGE_BENCHMARKING_USER=${edge_benchmarking_user}/g" .env
+sed -i "s/EDGE_BENCHMARKING_PASSWORD=.*/EDGE_BENCHMARKING_PASSWORD=${edge_benchmarking_password}/g" .env
+
 # Customize services/backend/.env (cwd = $AG_SOURCE_DIR/platform/services/backend)
 cd services/backend || exit 2
 
