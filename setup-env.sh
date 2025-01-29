@@ -199,9 +199,9 @@ AG_PORTAINER_ADMIN_PASSWORD=$(generatePassword)
 AG_GITHUB_TOKEN=${github_token}
 AG_NVIDIA_NGC_API_KEY=${nvidia_ngc_api_key}
 
-AG_EDGE_BENCHMARKING_URL=$(edge_benchmarking_url)
-AG_EDGE_BENCHMARKING_USER=$(edge_benchmarking_user)
-AG_EDGE_BENCHMARKING_PASSWORD=$(edge_benchmarking_password)
+AG_EDGE_BENCHMARKING_URL=${edge_benchmarking_url}
+AG_EDGE_BENCHMARKING_USER=${edge_benchmarking_user}
+AG_EDGE_BENCHMARKING_PASSWORD=${edge_benchmarking_password}
 EOF
 
 cat "${env_filepath}"
