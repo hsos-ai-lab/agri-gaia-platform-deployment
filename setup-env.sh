@@ -188,7 +188,7 @@ AG_REALM_SERVICE_ACCOUNT_PASSWORD=$(generatePassword)
 AG_MINIO_ROOT_USER=${default_user}
 AG_MINIO_ROOT_PASSWORD=$(generatePassword)
 
-AG_EDC_KEYSTORE_PASSWORD=$(edc_keystore_password)
+AG_EDC_KEYSTORE_PASSWORD=${edc_keystore_password}
 
 AG_EDC_ENDPOINT_PASSWORD=$(generatePassword)
 AG_PONTUSX_ENDPOINT_PASSWORD=$(generatePassword)
