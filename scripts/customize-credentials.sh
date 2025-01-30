@@ -47,6 +47,9 @@ backend_openid_client_secret="$(generate_random_token 64)"
 connector_password="$(generate_random_token 64 "3L3691sM")"
 pontusx_password="$(generate_random_token 64 "en29zQVu")"
 
+#Adding edc keystore password
+connector_keystore_password="$(cat ${AG_SOURCE_DIR}/secrets/edc/keystore_password.txt)"
+
 # Htpasswd
 traefik_htpasswd=$(echo "${AG_TRAEFIK_PASSWORD}" | htpasswd -niB "${AG_TRAEFIK_USER}" | cut -f 2 -d ':')
 realm_service_account_htpasswd=$(echo "${AG_REALM_SERVICE_ACCOUNT_PASSWORD}" | htpasswd -niB service-account-realm | cut -f 2 -d ':')
@@ -91,6 +94,8 @@ sed -i "s/GITHUB_TOKEN=.*/GITHUB_TOKEN=${AG_GITHUB_TOKEN}/g" .env
 
 sed -i "s/CONNECTOR_PASSWORD=.*/CONNECTOR_PASSWORD=${connector_password}/g" .env
 sed -i "s/PONTUSX_PASSWORD=.*/PONTUSX_PASSWORD=${pontusx_password}/g" .env
+
+sed -i "s/KEYSTORE_PASSWORD=.*/KEYSTORE_PASSWORD=${connector_keystore_password}/g" .env
 
 # Customize services/backend/.env (cwd = $AG_SOURCE_DIR/platform/services/backend)
 cd services/backend || exit 2
