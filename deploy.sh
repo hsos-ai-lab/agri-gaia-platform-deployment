@@ -9,7 +9,7 @@
 # SPDX-FileContributor: Prof. Dr.-Ing. Heiko Tapken
 # SPDX-FileContributor: Tobias Wamhof
 #
-# SPDX-License-Identifier: AGPL-3.0-or-later
+# SPDX-License-Identifier: MIT
 
 AG_GIT_BRANCH_PLATFORM="${1}"
 AG_VOLUMES_TO_REMOVE="${2}"
