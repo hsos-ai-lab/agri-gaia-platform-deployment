@@ -49,6 +49,7 @@ AG_MAX_GPUS="$(command -v nvidia-smi &> /dev/null && nvidia-smi -L | wc -l)"
 [[ -z "${AG_GIT_BRANCH_BACKEND}" ]] && AG_GIT_BRANCH_BACKEND="main"
 [[ -z "${AG_GIT_REPOSITORY_FRONTEND}" ]] && AG_GIT_REPOSITORY_FRONTEND="agri-gaia-frontend"
 [[ -z "${AG_GIT_BRANCH_FRONTEND}" ]] && AG_GIT_BRANCH_FRONTEND="main"
+[[ -z "${AG_GIT_BRANCH_PONTUSX}" ]] && AG_GIT_BRANCH_PONTUSX="main"
 
 [[ -z "${AG_DEPLOY_MODE}" ]] &&  AG_DEPLOY_MODE="production"
 [[ "${AG_DEPLOY_MODE}" != "development" && "${AG_DEPLOY_MODE}" != "production" ]] \

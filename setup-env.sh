@@ -135,12 +135,16 @@ echo ""
 echo "Please enter the password for your EDC keystore"
 read -rp "EDC keystore password: " -e edc_keystore_password
 
+echo ""
+echo "Please enter the api key name for your PontusX Connector"
+read -rp "PontusX api key name: " -e pontusx_api_key_name
+
 generatePassword() {
 	< /dev/urandom tr -dc A-Za-z0-9 | head -c20
 }
 
 default_user="agri-gaia"
-compose_profiles="edge,annotation,semantics,monitoring,edc,triton"
+compose_profiles="edge,annotation,semantics,monitoring,edc,triton,pontusx"
 
 cat <<EOF > "${env_filepath}"
 AG_GIT_BASE_URL=${git_base_url}
@@ -192,6 +196,9 @@ AG_EDC_KEYSTORE_PASSWORD=${edc_keystore_password}
 
 AG_EDC_ENDPOINT_PASSWORD=$(generatePassword)
 AG_PONTUSX_ENDPOINT_PASSWORD=$(generatePassword)
+
+AG_PONTUSX_PASSWORD=$(generatePassword)
+AG_PONTUSX_API_KEY_NAME=${pontusx_api_key_name}
 
 AG_FUSEKI_ADMIN_USER=${default_user}
 AG_FUSEKI_ADMIN_PASSWORD=$(generatePassword)

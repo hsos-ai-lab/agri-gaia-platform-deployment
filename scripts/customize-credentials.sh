@@ -43,11 +43,16 @@ agbot_token="$(generate_random_token 64)"
 backend_registry_token="$(generate_random_token 64)"
 backend_openid_client_secret="$(generate_random_token 64)"
 
+cd "${AG_SOURCE_DIR}/" || exit 1
+
+pontusx_address="$(cat ${AG_SOURCE_DIR}/secrets/pontusx/public_key.txt)"
+pontusx_private_key="$(cat ${AG_SOURCE_DIR}/secrets/pontusx/private_key.txt)"
+
 # Htpasswd
 traefik_htpasswd=$(echo "${AG_TRAEFIK_PASSWORD}" | htpasswd -niB "${AG_TRAEFIK_USER}" | cut -f 2 -d ':')
 realm_service_account_htpasswd=$(echo "${AG_REALM_SERVICE_ACCOUNT_PASSWORD}" | htpasswd -niB service-account-realm | cut -f 2 -d ':')
 
-cd "${AG_SOURCE_DIR}/platform" || exit 1
+cd "${AG_SOURCE_DIR}/platform" || exit 2
 
 # Customize platform/.env (cwd = $AG_SOURCE_DIR/platform)
 sed -i "s/TRAEFIK_USER=.*/TRAEFIK_USER='${AG_TRAEFIK_USER}'/g" .env
@@ -87,11 +92,15 @@ sed -i "s/GITHUB_TOKEN=.*/GITHUB_TOKEN=${AG_GITHUB_TOKEN}/g" .env
 
 sed -i "s/CONNECTOR_PASSWORD=.*/CONNECTOR_PASSWORD=${AG_EDC_ENDPOINT_PASSWORD}/g" .env
 sed -i "s/PONTUSX_PASSWORD=.*/PONTUSX_PASSWORD=${AG_PONTUSX_ENDPOINT_PASSWORD}/g" .env
+sed -i "s/PONTUSX_API_KEY_NAME=.*/PONTUSX_API_KEY_NAME=${AG_PONTUSX_API_KEY_NAME}/g" .env
+
+sed -i "s/PROVIDER_PRIVATE_KEY=.*/PROVIDER_PRIVATE_KEY=${pontusx_private_key}/g" .env
+sed -i "s/PROVIDER_ADDRESS=.*/PROVIDER_ADDRESS=${pontusx_address}/g" .env
 
 sed -i "s/KEYSTORE_PASSWORD=.*/KEYSTORE_PASSWORD=${AG_EDC_KEYSTORE_PASSWORD}/g" .env
 
 # Customize services/backend/.env (cwd = $AG_SOURCE_DIR/platform/services/backend)
-cd services/backend || exit 2
+cd services/backend || exit 3
 
 sed -i "s/SESSION_SECRET_KEY=.*/SESSION_SECRET_KEY=${session_secret_key}/g" .env
 
