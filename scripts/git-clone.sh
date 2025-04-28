@@ -49,15 +49,18 @@ if [[ "${AG_GIT_PUBLIC_REPOSITORIES}" == false ]]; then
     git_org_url="${AG_GIT_BASE_URL}:${AG_GIT_ORGANIZATION}"
     backend_submodule_base="git@backend.${git_org_url}"
     frontend_submodule_base="git@frontend.${git_org_url}"
+    pontusx_submodule_base="git@pontusx.${git_org_url}"
 else
     # Update submodule urls to use https instead of git@ssh
     git_org_url="${AG_GIT_BASE_URL}/${AG_GIT_ORGANIZATION}"
     backend_submodule_base="https://${git_org_url}"
     frontend_submodule_base="${backend_submodule_base}"
+    pontusx_submodule_base="${backend_submodule_base}"
 fi
 
 git config submodule.services/backend.url "${backend_submodule_base}/${AG_GIT_REPOSITORY_BACKEND}.git"
 git config submodule.services/frontend.url "${frontend_submodule_base}/${AG_GIT_REPOSITORY_FRONTEND}.git"
+git config submodule.services/pontusx.url "${pontusx_submodule_base}/${AG_GIT_REPOSITORY_PONTUSX}.git"
 
 git submodule update
 
@@ -71,3 +74,7 @@ git checkout "${AG_GIT_BRANCH_FRONTEND}" || exit 7
 cd ../backend || exit 8
 git submodule update --init
 git checkout "${AG_GIT_BRANCH_BACKEND}" || exit 9
+
+cd ../pontusx || exit 10
+git submodule update --init
+git checkout "${AG_GIT_BRANCH_PONTUSX}" || exit 11

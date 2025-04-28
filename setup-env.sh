@@ -37,6 +37,12 @@ read -rp "Frontend repository: " -e git_repository_frontend
 echo "Please enter the git branch of the platform frontend repository you want to use, e.g. main"
 read -rp "Frontend git branch: " -e git_branch_frontend
 
+echo "Please enter the pontusx repository name, e.g. agri-gaia-pontusx-provider"
+read -rp "PontusX repository: " -e git_repository_pontusx
+
+echo "Please enter the git branch of the platform pontusx provider repository you want to use, e.g. main"
+read -rp "PontusX git branch: " -e git_branch_pontusx
+
 echo "Please enter the name of the git organization the repositories are part of, e.g. hsos-ai-lab"
 read -rp "Git organization name: " -e git_organization
 
@@ -155,6 +161,8 @@ AG_GIT_REPOSITORY_BACKEND=${git_repository_backend}
 AG_GIT_BRANCH_BACKEND=${git_branch_backend}
 AG_GIT_REPOSITORY_FRONTEND=${git_repository_frontend}
 AG_GIT_BRANCH_FRONTEND=${git_branch_frontend}
+AG_GIT_REPOSITORY_FRONTEND=${git_repository_pontusx}
+AG_GIT_BRANCH_FRONTEND=${git_branch_pontusx}
 AG_GIT_PUBLIC_REPOSITORIES=${git_public_repositories}
 AG_PROJECT_BASE_URL=${project_base_url}
 AG_SOURCE_DIR=/opt/agri-gaia
