@@ -34,6 +34,9 @@ if [[ "${mode}" == "install" ]]; then
         $(. /etc/os-release && echo "${VERSION_CODENAME}") stable" | \
         tee /etc/apt/sources.list.d/docker.list > /dev/null
 
+    # Pin Docker to major version 28
+    cp preferences.d/docker /etc/apt/preferences.d
+
     apt-get update
     xargs -a "${script_dir}/docker.txt" apt-get install -y
 
