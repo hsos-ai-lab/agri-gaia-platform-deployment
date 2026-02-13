@@ -35,7 +35,7 @@ if [[ "${mode}" == "install" ]]; then
         tee /etc/apt/sources.list.d/docker.list > /dev/null
 
     # Pin Docker to major version 28
-    cp preferences.d/docker /etc/apt/preferences.d
+    cp "${script_dir}/preferences.d/docker" /etc/apt/preferences.d
 
     apt-get update
     xargs -a "${script_dir}/docker.txt" apt-get install -y
