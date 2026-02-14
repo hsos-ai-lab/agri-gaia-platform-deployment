@@ -47,6 +47,7 @@ if [[ "${mode}" == "install" ]]; then
     docker buildx version
 elif [[ "${mode}" == "uninstall" ]]; then
     xargs -a "${script_dir}/docker.txt" apt-get remove -y
+    rm /etc/apt/preferences.d/docker
     rm /etc/apt/sources.list.d/docker.list /etc/apt/keyrings/docker.asc
     apt-get update
 else
