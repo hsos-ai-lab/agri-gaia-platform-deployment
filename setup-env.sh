@@ -43,8 +43,8 @@ read -rp "Git organization name: " -e git_organization
 read -rp "Are you deploying from public git repositories? (Y/N): " -e git_public_repositories
 
 git_public_repositories=$([[ $git_public_repositories =~ ^[nN]([oO])?$ ]] && echo false || echo true)
-
-echo "Please enter the project base url, e.g. agri-gaia.example.com"
+# This has to change if any new subdomain is added which is longer than 13 characters. 
+echo "Please enter the project base url, e.g. agri-gaia.example.com. Note: It must not be longer than 50 characters."
 read -rp "Project base url: " -e project_base_url
 
 echo ""
