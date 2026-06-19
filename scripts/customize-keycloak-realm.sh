@@ -15,6 +15,13 @@ echo "$(date +"%Y-%m-%d %H:%M:%S.%6N") - ${0}"
 
 cd "${AG_SOURCE_DIR}/platform/services/keycloak/realm-export" || exit 1
 
+sed -i "s/test-realm/${AG_KEYCLOAK_REALM}/g" ${AG_SOURCE_DIR}/platform/.env
+
+if [[ "${AG_DEPLOY_MODE}" == "development" ]]; then
+    sed -i "s/test-realm/${AG_KEYCLOAK_REALM}/g" ${AG_SOURCE_DIR}/platform/services/backend/agri_gaia_backend/services/portainer/portainer_api.py
+    sed -i "s/test-realm/${AG_KEYCLOAK_REALM}/g" ${AG_SOURCE_DIR}/platform/services/frontend/public/keycloak.json
+fi
+
 jq \
     --argjson registrationAllowed "${AG_ALLOW_REGISTRATION}" \
     '.registrationAllowed = $registrationAllowed' \

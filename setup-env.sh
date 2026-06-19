@@ -123,6 +123,10 @@ echo ""
 echo "Please enter the password for your EDC keystore"
 read -rp "EDC keystore password: " -e edc_keystore_password
 
+echo ""
+echo "Please enter the name you wish to use as Keycloak realm"
+read -rp "Keycloak realm name: " -e keycloak_realm
+
 generatePassword() {
 	< /dev/urandom tr -dc A-Za-z0-9 | head -c20
 }
@@ -171,6 +175,7 @@ AG_KEYCLOAK_USER=${default_user}
 AG_KEYCLOAK_PASSWORD=$(generatePassword)
 AG_KEYCLOAK_DB_USER=${default_user}
 AG_KEYCLOAK_DB_PASSWORD=$(generatePassword)
+AG_KEYCLOAK_REALM=${keycloak_realm}
 AG_REALM_SERVICE_ACCOUNT_PASSWORD=$(generatePassword)
 
 AG_MINIO_ROOT_USER=${default_user}
