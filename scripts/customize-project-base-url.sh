@@ -21,4 +21,4 @@ sed -i "s|KEYCLOAK_FRONTEND_URL=.*|KEYCLOAK_FRONTEND_URL=https://keycloak.${AG_P
 cd "${AG_SOURCE_DIR}/platform/services/frontend" || exit 2
 
 grep -rl "agri-gaia.localhost" src/ | xargs sed -i "s/agri-gaia.localhost/${AG_PROJECT_BASE_URL}/g"
-sed -i "s/agri-gaia.localhost/${AG_PROJECT_BASE_URL}/g" public/keycloak.json
+sed -i "s/agri-gaia.localhost/${AG_PROJECT_BASE_URL}/g" public/keycloak.json vite.config.ts

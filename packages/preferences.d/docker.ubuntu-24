@@ -1,0 +1,23 @@
+Package: containerd.io
+Pin: version 1.7.*
+Pin-Priority: 1001
+
+Package: docker-ce
+Pin: version 5:28.*
+Pin-Priority: 1001
+
+Package: docker-ce-cli
+Pin: version 5:28.*
+Pin-Priority: 1001
+
+Package: docker-ce-rootless-extras
+Pin: version 5:28.*
+Pin-Priority: 1001
+
+Package: docker-buildx-plugin
+Pin: version 0.29.*
+Pin-Priority: 1001
+
+Package: docker-compose-plugin
+Pin: version 2.40.*
+Pin-Priority: 1001

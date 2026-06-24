@@ -34,8 +34,11 @@ if [[ "${mode}" == "install" ]]; then
         $(. /etc/os-release && echo "${VERSION_CODENAME}") stable" | \
         tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-    # Pin Docker to major version 28
-    cp "${script_dir}/preferences.d/docker" /etc/apt/preferences.d
+    # Pin Docker versions based on Ubuntu release
+    ubuntu_version="$(. /etc/os-release && echo "${VERSION_ID}")"
+    docker_pin_file="${script_dir}/preferences.d/docker.ubuntu-${ubuntu_version%%.*}"
+    [[ ! -f "${docker_pin_file}" ]] && { echo "No Docker pin file for Ubuntu ${ubuntu_version}: '${docker_pin_file}' not found."; exit 1; }
+    cp "${docker_pin_file}" /etc/apt/preferences.d/docker
 
     apt-get update
     xargs -a "${script_dir}/docker.txt" apt-get install -y
