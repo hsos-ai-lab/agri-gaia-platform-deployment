@@ -27,7 +27,7 @@ if [[ "${mode}" == "install" ]]; then
     systemctl enable --now cron
 elif [[ "${mode}" == "remove" ]]; then
     xargs -a "${script_dir}/utilities.txt" apt-get remove -y
-    rm /ust/bin/yq
+    rm /usr/bin/yq
 else
     >&2 echo "Unknown mode '${mode}'. Usage: ${0} {install, remove}" && exit 1
 fi
