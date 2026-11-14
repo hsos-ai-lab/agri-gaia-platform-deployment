@@ -121,15 +121,15 @@ read -rp "Flags for 'docker compose down': " -e compose_down_flags
 
 echo ""
 echo "Please enter the URL endpoint of your edge-benchmarking API"
-read -rp "Platform git branch: " -e edge_benchmarking_url
+read -rp "Edge-benchmarking URL: " -e edge_benchmarking_url
 
 echo ""
 echo "Please enter the user corresponding to your edge-benchmarking API endpoint"
-read -rp "Platform git branch: " -e edge_benchmarking_user
+read -rp "Edge-benchmarking user: " -e edge_benchmarking_user
 
 echo ""
 echo "Please enter the password corresponding to your edge-benchmarking API endpoint"
-read -rp "Platform git branch: " -e edge_benchmarking_password
+read -rp "Edge-benchmarking password: " -e edge_benchmarking_password
 
 echo ""
 echo "Please enter the password for your EDC keystore"
