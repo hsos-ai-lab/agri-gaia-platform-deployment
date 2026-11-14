@@ -22,5 +22,7 @@ compose_down_cmd="${compose_down_cmd} --remove-orphans"
 echo "${compose_down_cmd}"
 eval "${compose_down_cmd}"
 
-[[ -n "${AG_VOLUMES_TO_REMOVE}" && "${AG_COMPOSE_DOWN_FLAGS}" != *"-v"* ]] \
-  && docker volume rm --force "$(echo "${AG_VOLUMES_TO_REMOVE}" | tr "," " ")"
+if [[ -n "${AG_VOLUMES_TO_REMOVE}" && "${AG_COMPOSE_DOWN_FLAGS}" != *"-v"* ]]; then
+  IFS=',' read -ra volumes_to_remove <<< "${AG_VOLUMES_TO_REMOVE}"
+  docker volume rm --force "${volumes_to_remove[@]}"
+fi
